@@ -10,11 +10,25 @@ public class AiAgent : MonoBehaviour
     [SerializeField] private Transform[] _waypoints; //declaring the array, usually you would need to intitialise, but not necessary in unity with serializefield
     [SerializeField] private int _waypointIndex = 0;
 
-    private void Start()
+    public bool IsPlayerInRange()
     {
-        Debug.Log(0 % 6);
+        if(Vector2.Distance(transform.position, _player.transform.position) < 5f)
+        {
+            return true;
+        } 
+
+        else
+        {
+            return false;
+        }
     }
-    private void Update()
+
+    public void ChasePlayer()
+    {
+        MoveToPoint(_player.transform.position);
+    }
+
+    public void Patrol()
     {
         Vector2 waypointPosition = _waypoints[_waypointIndex].position;
 
