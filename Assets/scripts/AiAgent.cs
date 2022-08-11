@@ -30,6 +30,7 @@ public class AiAgent : MonoBehaviour
 
     public void Patrol()
     {
+
         Vector2 waypointPosition = _waypoints[_waypointIndex].position;
 
         MoveToPoint(waypointPosition);
@@ -57,5 +58,27 @@ public class AiAgent : MonoBehaviour
             directionToPoint *= _speed * Time.deltaTime;
             transform.position += (Vector3)directionToPoint;
         }
+    }
+
+    //loops
+    //while, loops until statement is false
+    //do while
+    //for, 
+    //foreach
+    public void Search()
+    {
+        int closestIndex = -1;
+        float closestDistance = float.MaxValue;
+        //   initialiser    condition                  interator
+        for (int index = 0; index < _waypoints.Length; index++)
+        {
+            float currentDistance = Vector2.Distance(_waypoints[index].position, transform.position);
+            if (currentDistance < closestDistance)
+            {
+                closestDistance = currentDistance;
+                closestIndex = index;
+            }
+        }
+        _waypointIndex = closestIndex;
     }
 }

@@ -45,6 +45,7 @@ public class StateMachine : MonoBehaviour
     private IEnumerator PatrolState()
     {
         Debug.Log("Patrol: Enter");
+        _aiAgent.Search();
         while (_state == State.Patrol)
         {
             _aiAgent.Patrol();
@@ -58,6 +59,7 @@ public class StateMachine : MonoBehaviour
         }
         
         Debug.Log("Patrol: Exit");
+
         NextState();
     }
 
