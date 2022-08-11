@@ -13,7 +13,7 @@ public class ShootGun : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0))
         {
             Vector3 clickLocation = _camera.ScreenToWorldPoint(Input.mousePosition);
 

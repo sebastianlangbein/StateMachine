@@ -5,12 +5,6 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float _speed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        Destroy(gameObject, 2);
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -18,5 +12,14 @@ public class Bullet : MonoBehaviour
         Vector2 position = transform.position;
         direction = direction.normalized * _speed * Time.deltaTime;
         transform.position = position + direction;
+
+        Camera cam = Camera.main;
+        float camHeight = 2f * cam.orthographicSize;
+        float camWidth = camHeight * cam.aspect;
+        Rect bulletRect = new Rect(-(camWidth/2),-(camHeight/2),camWidth,camHeight);
+        if (!bulletRect.Contains(transform.position))
+        {
+            Destroy(gameObject);
+        }
     }
 }
